@@ -2,6 +2,7 @@
 using DependencyInjection.Demo;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,10 +10,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 //addtranscient for dependency injection
-builder.Services.AddTransient<Logic>();
+//new instance everytime we ask for it
+builder.Services.AddTransient<ILogic, Logic>();
+builder.Services.AddTransient<IBetterlogic, BetterLogic>();
+
+//singleton for everyone, keep instance for each person
+builder.Services.AddScoped<Logic>();
+
+// we have a new instance which is similar eveywhere even if we copy the same url
+builder.Services.AddSingleton<Logic>();
+
 
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

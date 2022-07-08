@@ -1,11 +1,12 @@
 ﻿namespace DependencyInjection.Demo
 {
-    public class Logic
+    public class Logic : ILogic
     {
         public int Value1 { get; private set; }
 
         public int Value2 { get; private set; }
-    public Logic()
+
+        public Logic()
         {
             Value1 = Random.Shared.Next(0, 100);
             Value2 = Random.Shared.Next(0, 100);
