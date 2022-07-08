@@ -1,0 +1,25 @@
+﻿@page "/"
+@using DependencyInjection.Demo
+
+@*//Instead of creating an instance, we need this*@
+@inject Logic logic
+
+<PageTitle>Index</PageTitle>
+
+<h1>Random</h1>
+
+<h1>@logic.Value1</h1>
+<h1>@logic.Value2</h1>
+
+@code{
+    //private Logic logic;
+
+    protected override void OnInitialized()
+    {
+        //logic = new();
+    }
+
+
+}
+
+
